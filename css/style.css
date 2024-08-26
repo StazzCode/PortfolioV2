@@ -1,10 +1,81 @@
-:root {
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@font-face {
+  font-family: 'NeutralFace';
+  src: url('/assets/fonts/neutral_face/NeutralFace.otf');
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: 'NeutralFace-Bold';
+  src: url('/assets/fonts/neutral_face/NeutralFace-Bold.otf');
+}
+
+:root {
+  /* définitions des  variables de couleurs */
+    --neon-red:#F64141;
+    --neon-blue:#37A0F6;
+    --neon-yellow:#F6C913;
+    --neon-green:#12D96F;
+    --neon-purple:#5932E7;
+
+    --bg-light:#FCFAF9;
+    --dark-text:#0F1108;
+
+  /* définition de la variable scale du curseur */
+    --scale: 1;
+    --mD: 0;
+    
+  color-scheme: light dark;
+  color: var(--dark-text);
+  background-color: var(--bg-light);
+  font-family: 'NeutralFace-Bold';
+}
+
+.Default_root {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.Default_circle {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-light);
+  border-radius: 50%;
+  transform: scale(var(--scale));
+  border: 1px solid transparent;
+  transition: background-color .4s ease-in-out,transform .4s ease-in-out,border-color .4s ease-in-out;
+}
+
+.Default_isHover .Default_circle{
+  background-color: transparent;
+  border-color: var(--bg-light);
+}
+
+.CustomCursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 103;
+  pointer-events: none;
+  transform:translate3d(50vw, 50vh, 0)
+}
+
+.CustomCursor_inner {
+  /* --scale: 1; */
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%) scale(calc(1 - var(--mD)))
+}
+
+.CustomCursor_cursorType-default, .CustomCursor_isDifference {
+  mix-blend-mode:difference;
+}
+
+a {
+  text-decoration: none;
+  color: var(--dark-text);
 }

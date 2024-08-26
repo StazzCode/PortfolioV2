@@ -1,4 +1,6 @@
-// Make the cursor background following the cursor position
+// cursor.js
+
+// Make the cursor background follow the cursor position
 const CustomCursor = document.querySelector('.CustomCursor');
 
 // Initial position of the tracker
@@ -36,6 +38,8 @@ document.onmousemove = (event) => {
 // Handle when the cursor leaves the window
 document.onmouseout = (event) => {
   cursorInWindow = false;
+  CustomCursor.style.transition = "0.2s";
+  CustomCursor.style.opacity = 0;
 };
 
 // Continuously update the position for smooth tracking
@@ -53,34 +57,7 @@ function updateTracker() {
   }
 
   // Apply the updated position
-  CustomCursor.style.transform = `translate3d(${trackerX-3}px,${trackerY-3}px, 0)`;
+  CustomCursor.style.transform = `translate3d(${trackerX-9}px,${trackerY-9}px, 0)`;
 }
 
 updateTracker();
-
-document.onmouseout = (event) => {
-  CustomCursor.style.transition = "0.2s";
-  CustomCursor.style.opacity = 0;
-}
-
-// Affect the cursor on hover
-
-const Hoverable = document.querySelectorAll('a');
-const Default_root = document.querySelector('.Default_root');
-
-if (Default_root) {
-  Hoverable.forEach((element) => {
-    element.addEventListener('mouseenter', () => {
-      console.log('ENTER');
-      Default_root.classList.add('Default_isHover');
-      document.documentElement.style.setProperty('--scale', 1.625);
-    });
-
-    element.addEventListener('mouseleave', () => {
-      Default_root.classList.remove('Default_isHover');
-      document.documentElement.style.setProperty('--scale', 1);
-    });
-  });
-} else {
-  console.warn('Default_root element not found.');
-}
